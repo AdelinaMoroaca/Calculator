@@ -36,6 +36,7 @@ let secondNum = document.getElementById('');
 // and then calls one of the above functions on the numbers.
 function operate(a, b, operator){
     if (operator === '+'){
+        console.log('ok')
         return addNumbers(a,b);
     } else if(operator === '-'){
         return subtractNumbers(a,b);     
@@ -74,8 +75,13 @@ let num2 = document.getElementById('btn2');
 let num1 = document.getElementById('btn1');
 let num0 = document.getElementById('btn0');
 
-let selectNum = '0';
-let displayValue = (e, num) => e.target.textContent = num.textContent;
+
+let selectNum = '';
+let displayValue = (e) => {
+    selectNum = e.target.textContent;
+    display.innerHTML += selectNum;
+    console.log(selectNum);
+}
 
 num9.addEventListener('click', displayValue);
 num8.addEventListener('click', displayValue);
@@ -84,5 +90,9 @@ num6.addEventListener('click', displayValue);
 num5.addEventListener('click', displayValue);
 num4.addEventListener('click', displayValue);
 num3.addEventListener('click', displayValue);
+num2.addEventListener('click', displayValue);
+num1.addEventListener('click', displayValue);
+num0.addEventListener('click', displayValue);
 
-
+clearBtn.addEventListener('click', clearData);
+deleteBtn.addEventListener('click', deleteNum);
