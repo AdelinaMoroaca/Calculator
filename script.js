@@ -83,6 +83,12 @@ let displayValue = (e) => {
     console.log(selectNum);
 }
 
+function clearData(){
+    selectNum = '0';
+}
+
+
+
 num9.addEventListener('click', displayValue);
 num8.addEventListener('click', displayValue);
 num7.addEventListener('click', displayValue);
@@ -96,3 +102,4 @@ num0.addEventListener('click', displayValue);
 
 clearBtn.addEventListener('click', clearData);
 deleteBtn.addEventListener('click', deleteNum);
+
