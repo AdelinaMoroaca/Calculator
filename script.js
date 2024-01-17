@@ -85,9 +85,16 @@ let displayValue = (e) => {
 
 function clearData(){
     selectNum = '0';
+    display.innerHTML = selectNum;
 }
 
+function deleteNum(){
+    console.log(selectNum, 'num');
+    // let lastNum = selectNum.slice(0, -1);
+    // display.innerHTML -= lastNum;
+    // console.log(lastNum);
 
+}
 
 num9.addEventListener('click', displayValue);
 num8.addEventListener('click', displayValue);
