@@ -78,21 +78,25 @@ let num0 = document.getElementById('btn0');
 
 let selectNum = '';
 let displayValue = (e) => {
-    selectNum = e.target.textContent;
-    display.innerHTML += selectNum;
-    console.log(selectNum);
+    selectNum += e.target.textContent;
+    display.innerHTML = selectNum; 
 }
 
 function clearData(){
-    selectNum = '0';
-    display.innerHTML = selectNum;
+    selectNum = '';
+    display.innerHTML = '0';
 }
 
 function deleteNum(){
-    console.log(selectNum, 'num');
-    // let lastNum = selectNum.slice(0, -1);
-    // display.innerHTML -= lastNum;
-    // console.log(lastNum);
+    
+    // let x = '';
+    // for(i = 0; i < selectNum.length +1; i++){
+    //     console.log(x);
+    //     display.innerHTML = selectNum.slice(0, -1);
+    // console.log(selectNum, '6');
+
+    // }
+    // console.log(selectNum, '6');
 
 }
 
