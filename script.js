@@ -88,16 +88,8 @@ function clearData(){
 }
 
 function deleteNum(){
-    
-    // let x = '';
-    // for(i = 0; i < selectNum.length +1; i++){
-    //     console.log(x);
-    //     display.innerHTML = selectNum.slice(0, -1);
-    // console.log(selectNum, '6');
-
-    // }
-    // console.log(selectNum, '6');
-
+    selectNum = selectNum.slice(0, -1);
+    display.innerHTML = selectNum;
 }
 
 num9.addEventListener('click', displayValue);
