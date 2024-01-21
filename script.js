@@ -28,26 +28,26 @@ function divideNumbers(a,b){
 console.log('divideNumbers', divideNumbers(17,15))
 
 //CREATE VARIABLES FOR EACH OF THE PARTS OF A CALCULATOR OPERATION
-let firstNum = document.getElementById('');
-let operator = document.getElementById('operator');
-let secondNum = document.getElementById('');
+// let firstNum = document.getElementById('');
+// let operator = document.getElementById('operator');
+// let secondNum = document.getElementById('');
 
 //Create a new function operate that takes an operator and 2 numbers
 // and then calls one of the above functions on the numbers.
-function operate(a, b, operator){
-    if (operator === '+'){
-        console.log('ok')
-        return addNumbers(a,b);
-    } else if(operator === '-'){
-        return subtractNumbers(a,b);     
-    } else if(operator === '*'){
-        return multiplyNumbers(a,b);     
-    } else if(operator === '/'){
-        return divideNumbers(a,b);     
-    }
-}
+// function operate(a, b, operator){
+//     if (operator === '+'){
+//         console.log('ok')
+//         return addNumbers(a,b);
+//     } else if(operator === '-'){
+//         return subtractNumbers(a,b);     
+//     } else if(operator === '*'){
+//         return multiplyNumbers(a,b);     
+//     } else if(operator === '/'){
+//         return divideNumbers(a,b);     
+//     }
+// }
 
-console.log('operate', operate(10,10,'+'));
+// console.log('operate', operate(10,10,'+'));
 
 // Create the functions that populate the display when you click the number buttons. 
 // You should be storing the ‘display value’ in a variable somewhere for use
@@ -106,3 +106,64 @@ num0.addEventListener('click', displayValue);
 clearBtn.addEventListener('click', clearData);
 deleteBtn.addEventListener('click', deleteNum);
 
+// Make the calculator work! You’ll need to store the first number and second number
+// that are input into the calculator, utilize the operator that the user selects,
+// and then operate() on the two numbers when the user presses the “=” key.
+
+
+// let firstNum = document.createAttribute('firstNum');
+let operator = document.getElementById('operator');
+let secondNum = document.createAttribute('secondNum');
+
+function operate(firstNum, secondNum, operator){
+
+    // firstNum.value = selectNum;
+    // secondNum.value = selectNum;
+    // display.setAttributeNode(firstNum);
+
+
+    if(operator === '='){
+        let firstNum = document.createAttribute('firstNum');
+        firstNum.value = selectNum;
+        secondNum.value = selectNum;
+        display.setAttributeNode(firstNum);
+    }
+
+
+
+    // if (operator === '+'){
+    //     console.log('ok')
+    //     return addNumbers(firstNum,secondNum);
+    // } else if(operator === '-'){
+    //     return subtractNumbers(firstNum,secondNum);     
+    // } else if(operator === '*'){
+    //     return multiplyNumbers(firstNum,secondNum);     
+    // } else if(operator === '/'){
+    //     return divideNumbers(firstNum,secondNum);     
+    // }
+}
+
+console.log('operate', operate(10,10,'='));
+
+
+function myFunction(e) {
+    console.log('ok');
+    // Create a href attribute:
+    let attr = document.createAttribute("firstnum");
+    
+    // Set the value of the href attribute:
+    attr.value = e.target.textContent;
+    
+    // Add the href attribute to an element:
+    document.getElementById('display').setAttributeNode(attr);
+    console.log(display.value)
+}
+
+opEqual.addEventListener('click', myFunction);
+
+// You should already have the code that can populate the display, 
+//so once operate() has been called, update the display with the ‘solution’
+// to the operation.
+// This is the hardest part of the project.
+// You need to figure out how to store all the values and call the operate function
+// with them. Don’t feel bad if it takes you a while to figure out the logic.
