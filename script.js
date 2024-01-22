@@ -1,49 +1,76 @@
 // CREATING MATH FUNCTIONS FOR ALL OF THE BASIC MATH OPERATORS
 // ADD
-function addNumbers(a,b){
-    return a + b;
+function addNumbers(firstNum,secondNum){
+    return firstNum + secondNum;
 }
 
 console.log('addNumbers', addNumbers(17,15))
 
 // SUBTRACT
-function subtractNumbers(a,b){
-    return a - b;
+function subtractNumbers(firstNum,secondNum){
+    return firstNum - secondNum;
 }
 
 console.log('subtractNumbers', subtractNumbers(17,15))
 
 // MULTIPLY
-function multiplyNumbers(a,b){
-    return a * b;
+function multiplyNumbers(firstNum,secondNum){
+    return firstNum * secondNum;
 }
 
 console.log('multiplyNumbers', multiplyNumbers(17,15))
 
 // DIVIDE
-function divideNumbers(a,b){
-    return a / b;
+function divideNumbers(firstNum,secondNum){
+    return firstNum / secondNum;
 }
 
 console.log('divideNumbers', divideNumbers(17,15))
 
 //CREATE VARIABLES FOR EACH OF THE PARTS OF A CALCULATOR OPERATION
-// let firstNum = document.getElementById('');
-// let operator = document.getElementById('operator');
-// let secondNum = document.getElementById('');
+let firstNum = '';
+let operator = '';
+let secondNum = '';
 
 //Create a new function operate that takes an operator and 2 numbers
 // and then calls one of the above functions on the numbers.
-// function operate(a, b, operator){
+
+console.log('firstNum0', firstNum);
+console.log('secondNum0', secondNum);
+
+
+function newOperate(firstNum, secondNum, operator){
+    console.log('firstNum1', firstNum);
+    console.log('secondNum1', secondNum);
+
+
+    console.log('firstNum2', firstNum);
+    console.log('secondNum2', secondNum);
+
+
+    if (operator === '+'){
+        return addNumbers(firstNum,secondNum);
+    } else if(operator === '-'){
+        return subtractNumbers(firstNum,secondNum);     
+    } else if(operator === '*'){
+        return multiplyNumbers(firstNum,secondNum);     
+    } else if(operator === '/'){
+        return divideNumbers(firstNum,secondNum);     
+    }
+}
+
+console.log('newOperate', newOperate(10,120,'*'));
+
+// function operate(firstNum, secondNum, operator){
 //     if (operator === '+'){
 //         console.log('ok')
-//         return addNumbers(a,b);
+//         return addNumbers(firstNum,secondNum);
 //     } else if(operator === '-'){
-//         return subtractNumbers(a,b);     
+//         return subtractNumbers(firstNum,secondNum);     
 //     } else if(operator === '*'){
-//         return multiplyNumbers(a,b);     
+//         return multiplyNumbers(firstNum,secondNum);     
 //     } else if(operator === '/'){
-//         return divideNumbers(a,b);     
+//         return divideNumbers(firstNum,secondNum);     
 //     }
 // }
 
@@ -80,6 +107,7 @@ let selectNum = '';
 let displayValue = (e) => {
     selectNum += e.target.textContent;
     display.innerHTML = selectNum; 
+    
 }
 
 function clearData(){
@@ -111,55 +139,6 @@ deleteBtn.addEventListener('click', deleteNum);
 // and then operate() on the two numbers when the user presses the “=” key.
 
 
-// let firstNum = document.createAttribute('firstNum');
-let operator = document.getElementById('operator');
-let secondNum = document.createAttribute('secondNum');
-
-function operate(firstNum, secondNum, operator){
-
-    // firstNum.value = selectNum;
-    // secondNum.value = selectNum;
-    // display.setAttributeNode(firstNum);
-
-
-    if(operator === '='){
-        let firstNum = document.createAttribute('firstNum');
-        firstNum.value = selectNum;
-        secondNum.value = selectNum;
-        display.setAttributeNode(firstNum);
-    }
-
-
-
-    // if (operator === '+'){
-    //     console.log('ok')
-    //     return addNumbers(firstNum,secondNum);
-    // } else if(operator === '-'){
-    //     return subtractNumbers(firstNum,secondNum);     
-    // } else if(operator === '*'){
-    //     return multiplyNumbers(firstNum,secondNum);     
-    // } else if(operator === '/'){
-    //     return divideNumbers(firstNum,secondNum);     
-    // }
-}
-
-console.log('operate', operate(10,10,'='));
-
-
-function myFunction(e) {
-    console.log('ok');
-    // Create a href attribute:
-    let attr = document.createAttribute("firstnum");
-    
-    // Set the value of the href attribute:
-    attr.value = e.target.textContent;
-    
-    // Add the href attribute to an element:
-    document.getElementById('display').setAttributeNode(attr);
-    console.log(display.value)
-}
-
-opEqual.addEventListener('click', myFunction);
 
 // You should already have the code that can populate the display, 
 //so once operate() has been called, update the display with the ‘solution’
