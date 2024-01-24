@@ -79,7 +79,7 @@ console.log('newOperate', newOperate(10,120,'*'));
 // Create the functions that populate the display when you click the number buttons. 
 // You should be storing the ‘display value’ in a variable somewhere for use
 // in the next step.
-let display = document.getElementById('display');
+let resultDisplay = document.getElementById('resultDisplay');
 let clearBtn = document.getElementById('clear');
 let deleteBtn = document.getElementById('delete');
 
@@ -106,18 +106,18 @@ let num0 = document.getElementById('btn0');
 let selectNum = '';
 let displayValue = (e) => {
     selectNum += e.target.textContent;
-    display.innerHTML = selectNum; 
+    resultDisplay.innerHTML = selectNum; 
     
 }
 
 function clearData(){
     selectNum = '';
-    display.innerHTML = '0';
+    resultDisplay.innerHTML = '0';
 }
 
 function deleteNum(){
     selectNum = selectNum.slice(0, -1);
-    display.innerHTML = selectNum;
+    resultDisplay.innerHTML = selectNum;
 }
 
 num9.addEventListener('click', displayValue);

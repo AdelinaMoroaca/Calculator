@@ -4,12 +4,22 @@
     box-sizing: border-box;
 }
 
+:root {
+    --white:#ffffff;
+    --orange:#ee1717;
+    --black:#000;
+    --dark:#02051d;
+    --grey:#f7d2af;
+    --lightOrange:#ff9d41;
+
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: blue;
+    background: var(--grey);
 }
 
 #container {
@@ -19,8 +29,8 @@ body {
     align-items: center;
     height: 600px;
     width: 400px;
-    background-color: yellowgreen;
-    border: 2px solid black;
+    background-color: var(--orange);
+    border: 2px solid var(--orange);
     border-radius: 40px;
     margin: 50px;
 }
@@ -37,14 +47,23 @@ body {
     margin: 10px;
 }
 
+#resultDisplay{
+    height: 80px;
+    width: 380px;
+    border-radius: 30px;
+    margin-top: 80px;
+
+    background-color: rgb(252, 252, 189);
+    border: 2px solid red;
+}
+
 #content {
     /* display: flex; */
     flex-direction: row;
     justify-content: center;
     height: 400px;
     width: 380px;
-    background-color: rgb(252, 189, 231);
-    border: 2px solid red;
+    background-color: var(--orange);
     border-radius: 30px;
     margin-bottom: 10px;
 }
@@ -62,11 +81,17 @@ button {
     height: 70px;
     width: 70px;
     border-radius: 50%;
+    color: var(--white);
+    background-color: var(--orange);
+    border: solid 2px var(--grey);
+
 }
 
 #clear, #delete, #operatorEqual{
     width: 100px;
     border-radius: 40%;
+    background-color: var(--lightOrange);
+    color: var(--white);
 }
 
 .num {
