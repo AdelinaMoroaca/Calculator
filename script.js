@@ -19,8 +19,6 @@ function divideNumbers(firstNum, secondNum){
     return Number(firstNum) / Number(secondNum);
 }
 
-console.log('divideNumbers', divideNumbers(17,15))
-
 //CREATE VARIABLES FOR EACH OF THE PARTS OF A CALCULATOR OPERATION
 let firstNum = '0';
 let secondNum = '';
@@ -31,25 +29,29 @@ let flag = true;
 // and then calls one of the above functions on the numbers.
 
 function operate(){
-    console.log('equal');
     if (operator === '+'){
         resultDisplay.innerHTML = addNumbers(firstNum,secondNum);
     } else if(operator === '-'){
         resultDisplay.innerHTML = subtractNumbers(firstNum,secondNum);     
     } else if(operator === '*'){
         resultDisplay.innerHTML = multiplyNumbers(firstNum,secondNum);     
-    } else if(operator === '/'){
-        resultDisplay.innerHTML = divideNumbers(firstNum,secondNum);     
+    } else if(operator === '/' && secondNum !== '0'){
+        resultDisplay.innerHTML = divideNumbers(firstNum,secondNum);    
+    } else if(operator === '/' && secondNum === '0'){
+        for (const divideBy0 of errorDivide) {
+           divideBy0.disabled = true;
+
+        }
+        // errorDivide.disabled = true;
+        resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;     
     }
     console.log('FINAL FIRSTNUM', firstNum);
     console.log('operator', operator);
     console.log('FINAL SECONDNUM', secondNum);
-    // flag = true;
+    flag = true;
 }
-// console.log('operate', operate(10,120,'/'));
 
 let selectOperator = (e) => {
-
     flag = false;
     console.log("Flag: " , flag)
     operator = e.target.textContent;
@@ -65,6 +67,7 @@ let resultDisplay = document.getElementById('resultDisplay');
 // let display = document.getElementById('display');
 let clearBtn = document.getElementById('clear');
 let deleteBtn = document.getElementById('delete');
+const errorDivide = document.getElementsByClassName('divideBy0');
 
 let opDivide = document.getElementById('operatorDivide');
 let opMultiply = document.getElementById('operatorMultiply');
@@ -119,12 +122,16 @@ let displayValue = (e) => {
 
 function clearData(){
     firstNum = '0';
+    secondNum = '';
+    for (const divideBy0 of errorDivide) {
+        divideBy0.disabled = false;
+
+    }
     resultDisplay.innerHTML = firstNum;
 }
 
 function deleteNum(){
     firstNum = firstNum.slice(0, -1);
-    // resultDisplay.innerHTML = firstNum;
     if(firstNum.length < 1){
         firstNum = '0';
         resultDisplay.innerHTML = firstNum;
@@ -161,5 +168,19 @@ opEqual.addEventListener('click', operate);
 //function oprate() is triggered when you pres '='
 //when operate() is called, update the display with the ‘solution’ to the operation(code that can populate the display)
 
+
 //first number = result
 //second num =number;
+//nr caractere maxim:
+
+// Gotchas: watch out for and fix these bugs if they show up in your code:
+
+// Users should be able to string together several operations and get the right answer, with each pair of numbers being evaluated at a time. For example, 12 + 7 - 5 * 3 = should yield 42. An example of the behavior we’re looking for would be this student solution.
+
+// Your calculator should not evaluate more than a single pair of numbers at a time. Example: you press a number button (12), followed by an operator button (+), a second number button (7), and finally a second operator button (-). Your calculator should then do the following: first, evaluate the first pair of numbers (12 + 7), second, display the result of that calculation (19), and finally, use that result (19) as the first number in your new calculation, along with the next operator (-).
+
+// You should round answers with long decimals so that they don’t overflow the screen.
+
+// Pressing = before entering all of the numbers or an operator could cause problems!
+
+// Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
