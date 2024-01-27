@@ -48,13 +48,18 @@ body {
 }
 
 #resultDisplay{
-    height: 80px;
+    height: 180px;
     width: 380px;
     border-radius: 30px;
-    margin-top: 80px;
-
-    background-color: rgb(252, 252, 189);
+    /* margin-top: 80px; */
+    text-align: right;
+    background-color: rgb(240, 240, 207);
     border: 2px solid red;
+    padding-top: 70px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 200px;
+    font-size: 30px;
 }
 
 #content {

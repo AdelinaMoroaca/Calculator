@@ -1,85 +1,68 @@
 // CREATING MATH FUNCTIONS FOR ALL OF THE BASIC MATH OPERATORS
 // ADD
-function addNumbers(firstNum,secondNum){
-    return firstNum + secondNum;
+function addNumbers(firstNum, secondNum){
+    return Number(firstNum) + Number(secondNum);
 }
-
-console.log('addNumbers', addNumbers(17,15))
 
 // SUBTRACT
-function subtractNumbers(firstNum,secondNum){
-    return firstNum - secondNum;
+function subtractNumbers(firstNum, secondNum){
+    return Number(firstNum) - Number(secondNum);
 }
-
-console.log('subtractNumbers', subtractNumbers(17,15))
 
 // MULTIPLY
-function multiplyNumbers(firstNum,secondNum){
-    return firstNum * secondNum;
+function multiplyNumbers(firstNum, secondNum){
+    return Number(firstNum) * Number(secondNum);
 }
 
-console.log('multiplyNumbers', multiplyNumbers(17,15))
-
 // DIVIDE
-function divideNumbers(firstNum,secondNum){
-    return firstNum / secondNum;
+function divideNumbers(firstNum, secondNum){
+    return Number(firstNum) / Number(secondNum);
 }
 
 console.log('divideNumbers', divideNumbers(17,15))
 
 //CREATE VARIABLES FOR EACH OF THE PARTS OF A CALCULATOR OPERATION
-let firstNum = '';
-let operator = '';
+let firstNum = '0';
 let secondNum = '';
+let operator = '';
+let flag = true;
 
 //Create a new function operate that takes an operator and 2 numbers
 // and then calls one of the above functions on the numbers.
 
-console.log('firstNum0', firstNum);
-console.log('secondNum0', secondNum);
-
-
-function newOperate(firstNum, secondNum, operator){
-    console.log('firstNum1', firstNum);
-    console.log('secondNum1', secondNum);
-
-
-    console.log('firstNum2', firstNum);
-    console.log('secondNum2', secondNum);
-
-
+function operate(){
+    console.log('equal');
     if (operator === '+'){
-        return addNumbers(firstNum,secondNum);
+        resultDisplay.innerHTML = addNumbers(firstNum,secondNum);
     } else if(operator === '-'){
-        return subtractNumbers(firstNum,secondNum);     
+        resultDisplay.innerHTML = subtractNumbers(firstNum,secondNum);     
     } else if(operator === '*'){
-        return multiplyNumbers(firstNum,secondNum);     
+        resultDisplay.innerHTML = multiplyNumbers(firstNum,secondNum);     
     } else if(operator === '/'){
-        return divideNumbers(firstNum,secondNum);     
+        resultDisplay.innerHTML = divideNumbers(firstNum,secondNum);     
     }
+    console.log('FINAL FIRSTNUM', firstNum);
+    console.log('operator', operator);
+    console.log('FINAL SECONDNUM', secondNum);
+    // flag = true;
 }
+// console.log('operate', operate(10,120,'/'));
 
-console.log('newOperate', newOperate(10,120,'*'));
+let selectOperator = (e) => {
 
-// function operate(firstNum, secondNum, operator){
-//     if (operator === '+'){
-//         console.log('ok')
-//         return addNumbers(firstNum,secondNum);
-//     } else if(operator === '-'){
-//         return subtractNumbers(firstNum,secondNum);     
-//     } else if(operator === '*'){
-//         return multiplyNumbers(firstNum,secondNum);     
-//     } else if(operator === '/'){
-//         return divideNumbers(firstNum,secondNum);     
-//     }
-// }
+    flag = false;
+    console.log("Flag: " , flag)
+    operator = e.target.textContent;
 
-// console.log('operate', operate(10,10,'+'));
+    resultDisplay.innerHTML = firstNum + operator + secondNum; 
+    console.log('operator', operator);
+}
 
 // Create the functions that populate the display when you click the number buttons. 
 // You should be storing the ‘display value’ in a variable somewhere for use
 // in the next step.
 let resultDisplay = document.getElementById('resultDisplay');
+// let display = document.getElementById('display');
 let clearBtn = document.getElementById('clear');
 let deleteBtn = document.getElementById('delete');
 
@@ -89,7 +72,6 @@ let opSubtract = document.getElementById('operatorSubtract');
 let opAdd = document.getElementById('operatorAdd');
 let btnPoint = document.getElementById('btnPoint');
 let opEqual = document.getElementById('operatorEqual');
-
 
 let num9 = document.getElementById('btn9');
 let num8 = document.getElementById('btn8');
@@ -101,23 +83,53 @@ let num3 = document.getElementById('btn3');
 let num2 = document.getElementById('btn2');
 let num1 = document.getElementById('btn1');
 let num0 = document.getElementById('btn0');
+resultDisplay.innerHTML = firstNum; 
 
-
-let selectNum = '';
 let displayValue = (e) => {
-    selectNum += e.target.textContent;
-    resultDisplay.innerHTML = selectNum; 
-    
+    // if(firstNum === '0'){
+    //     firstNum = e.target.textContent;
+    //     resultDisplay.innerHTML = firstNum; 
+    // } else {
+    //     firstNum += e.target.textContent;
+    //     resultDisplay.innerHTML = firstNum; 
+    // }
+    // if(operator === '+'){
+
+    // }
+
+    if(flag){
+        if(firstNum === '0'){
+            firstNum = e.target.textContent;
+            resultDisplay.innerHTML = firstNum; 
+        } else {
+            firstNum += e.target.textContent;
+            resultDisplay.innerHTML = firstNum; 
+        }
+    } else {
+        if(secondNum === '0'){
+            secondNum = e.target.textContent;
+            resultDisplay.innerHTML = firstNum + operator + secondNum; 
+        } else {
+            secondNum += e.target.textContent;
+            resultDisplay.innerHTML = firstNum + operator + secondNum;  
+        }
+    }
 }
 
+
 function clearData(){
-    selectNum = '';
-    resultDisplay.innerHTML = '0';
+    firstNum = '0';
+    resultDisplay.innerHTML = firstNum;
 }
 
 function deleteNum(){
-    selectNum = selectNum.slice(0, -1);
-    resultDisplay.innerHTML = selectNum;
+    firstNum = firstNum.slice(0, -1);
+    // resultDisplay.innerHTML = firstNum;
+    if(firstNum.length < 1){
+        firstNum = '0';
+        resultDisplay.innerHTML = firstNum;
+    }
+    resultDisplay.innerHTML = firstNum;
 }
 
 num9.addEventListener('click', displayValue);
@@ -134,15 +146,20 @@ num0.addEventListener('click', displayValue);
 clearBtn.addEventListener('click', clearData);
 deleteBtn.addEventListener('click', deleteNum);
 
-// Make the calculator work! You’ll need to store the first number and second number
-// that are input into the calculator, utilize the operator that the user selects,
-// and then operate() on the two numbers when the user presses the “=” key.
+
+opAdd.addEventListener('click', selectOperator);
+opSubtract.addEventListener('click', selectOperator);
+opMultiply.addEventListener('click', selectOperator);
+opDivide.addEventListener('click', selectOperator);
+opEqual.addEventListener('click', operate);
 
 
+//pas 1:store first number
+//pas 2:oprator
+// pas 3 :store second number : pt rezolvare pas 3 : se reface pasul 1
 
-// You should already have the code that can populate the display, 
-//so once operate() has been called, update the display with the ‘solution’
-// to the operation.
-// This is the hardest part of the project.
-// You need to figure out how to store all the values and call the operate function
-// with them. Don’t feel bad if it takes you a while to figure out the logic.
+//function oprate() is triggered when you pres '='
+//when operate() is called, update the display with the ‘solution’ to the operation(code that can populate the display)
+
+//first number = result
+//second num =number;
