@@ -36,13 +36,12 @@ function operate(){
     } else if(operator === '*'){
         resultDisplay.innerHTML = multiplyNumbers(firstNum,secondNum);     
     } else if(operator === '/' && secondNum !== '0'){
-        resultDisplay.innerHTML = divideNumbers(firstNum,secondNum);    
+        resultDisplay.innerHTML = divideNumbers(firstNum,secondNum).toFixed(3);    
     } else if(operator === '/' && secondNum === '0'){
         for (const divideBy0 of errorDivide) {
            divideBy0.disabled = true;
 
         }
-        // errorDivide.disabled = true;
         resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;     
     }
     console.log('FINAL FIRSTNUM', firstNum);
@@ -124,7 +123,7 @@ function clearData(){
     firstNum = '0';
     secondNum = '';
     for (const divideBy0 of errorDivide) {
-        divideBy0.disabled = false;
+            divideBy0.disabled = false;
 
     }
     resultDisplay.innerHTML = firstNum;
