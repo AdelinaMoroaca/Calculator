@@ -29,24 +29,40 @@ let flag = true;
 // and then calls one of the above functions on the numbers.
 
 function operate(){
-    if (operator === '+'){
+    if (operator === '+' && firstNum !== '' && secondNum !== ''){
         resultDisplay.innerHTML = addNumbers(firstNum,secondNum);
-    } else if(operator === '-'){
-        resultDisplay.innerHTML = subtractNumbers(firstNum,secondNum);     
-    } else if(operator === '*'){
-        resultDisplay.innerHTML = multiplyNumbers(firstNum,secondNum);     
-    } else if(operator === '/' && secondNum !== '0'){
-        resultDisplay.innerHTML = divideNumbers(firstNum,secondNum).toFixed(3);    
+
+    } else if(operator === '-' && firstNum !== '' && secondNum !== ''){
+        resultDisplay.innerHTML = subtractNumbers(firstNum,secondNum); 
+
+    } else if(operator === '*' && firstNum !== '' && secondNum !== ''){
+        resultDisplay.innerHTML = multiplyNumbers(firstNum,secondNum);   
+
+    } else if(operator === '/' && firstNum !== '' && secondNum !== ''){
+        resultDisplay.innerHTML = divideNumbers(firstNum,secondNum).toFixed(3);
+
     } else if(operator === '/' && secondNum === '0'){
         for (const divideBy0 of errorDivide) {
            divideBy0.disabled = true;
-
         }
         resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;     
-    }
-    console.log('FINAL FIRSTNUM', firstNum);
-    console.log('operator', operator);
-    console.log('FINAL SECONDNUM', secondNum);
+    } else if(operator === '+' && firstNum !== '' && secondNum === ''){
+        secondNum = firstNum;
+        resultDisplay.innerHTML = addNumbers(firstNum,secondNum);
+
+    }  else if(operator === '-' && firstNum !== '' && secondNum === ''){
+        secondNum = firstNum;
+        resultDisplay.innerHTML = subtractNumbers(firstNum,secondNum);
+    } else if(operator === '*' && firstNum !== '' && secondNum === ''){
+        secondNum = firstNum;
+        resultDisplay.innerHTML = multiplyNumbers(firstNum,secondNum);
+    }  else if(operator === '/' && firstNum !== '' && secondNum === ''){
+        secondNum = firstNum
+        resultDisplay.innerHTML = divideNumbers(firstNum,secondNum);
+    } 
+    // console.log('FINAL FIRSTNUM', firstNum);
+    // console.log('operator', operator);
+    // console.log('FINAL SECONDNUM', secondNum);
     flag = true;
 }
 
@@ -158,5 +174,3 @@ opSubtract.addEventListener('click', selectOperator);
 opMultiply.addEventListener('click', selectOperator);
 opDivide.addEventListener('click', selectOperator);
 opEqual.addEventListener('click', operate);
-
-
