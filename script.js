@@ -30,6 +30,7 @@ let num0 = document.getElementById('btn0');
 let firstNum = '0';
 let secondNum = '';
 let operator = '';
+let result = '';
 let flag = true;
 
 resultDisplay.innerHTML = firstNum; 
@@ -37,22 +38,26 @@ resultDisplay.innerHTML = firstNum;
 // CREATING MATH FUNCTIONS FOR ALL OF THE BASIC MATH OPERATORS
 // ADD
 function addNumbers(firstNum, secondNum){
-    return Number(firstNum) + Number(secondNum);
+    result = Number(firstNum) + Number(secondNum);
+    return result;
 }
 
 // SUBTRACT
 function subtractNumbers(firstNum, secondNum){
-    return Number(firstNum) - Number(secondNum);
+    result = Number(firstNum) - Number(secondNum);
+    return result;
 }
 
 // MULTIPLY
 function multiplyNumbers(firstNum, secondNum){
-    return Number(firstNum) * Number(secondNum);
+    result = Number(firstNum) * Number(secondNum);
+    return result;
 }
 
 // DIVIDE
 function divideNumbers(firstNum, secondNum){
-    return Number(firstNum) / Number(secondNum);
+    result = Number(firstNum) / Number(secondNum);
+    return result;
 }
 
 //Create a new function operate that takes an operator and 2 numbers
@@ -60,16 +65,26 @@ function divideNumbers(firstNum, secondNum){
 
 function operate(){
     if (operator === '+' && firstNum !== '' && secondNum !== ''){
-        resultDisplay.innerHTML = addNumbers(firstNum,secondNum);
+        addNumbers(firstNum,secondNum);
+        resultDisplay.innerHTML = result;
+        firstNum = result;
+        resultDisplay.innerHTML = result;
+ 
+     
+
+
 
     } else if(operator === '-' && firstNum !== '' && secondNum !== ''){
-        resultDisplay.innerHTML = subtractNumbers(firstNum,secondNum); 
+        subtractNumbers(firstNum,secondNum); 
+        resultDisplay.innerHTML = result;
 
     } else if(operator === '*' && firstNum !== '' && secondNum !== ''){
-        resultDisplay.innerHTML = multiplyNumbers(firstNum,secondNum);   
+        multiplyNumbers(firstNum,secondNum);  
+        resultDisplay.innerHTML = result;
 
     } else if(operator === '/' && firstNum !== '' && secondNum !== '0' && secondNum !== ''){
-        resultDisplay.innerHTML = divideNumbers(firstNum,secondNum).toFixed(3);
+        divideNumbers(firstNum,secondNum).toFixed(3);
+        resultDisplay.innerHTML = result;
 
     } else if(operator === '/' && secondNum === '0' && firstNum !== ''){
         for (const divideBy0 of errorDivide) {
@@ -79,19 +94,26 @@ function operate(){
     
     } else if(operator === '+' && firstNum !== '' && secondNum === ''){
         secondNum = firstNum;
-        resultDisplay.innerHTML = addNumbers(firstNum,secondNum);
+        addNumbers(firstNum,secondNum);
+        resultDisplay.innerHTML = result;
 
     }  else if(operator === '-' && firstNum !== '' && secondNum === ''){
         secondNum = firstNum;
-        resultDisplay.innerHTML = subtractNumbers(firstNum,secondNum);
+        subtractNumbers(firstNum,secondNum);
+        resultDisplay.innerHTML = result;
+
 
     } else if(operator === '*' && firstNum !== '' && secondNum === ''){
         secondNum = firstNum;
-        resultDisplay.innerHTML = multiplyNumbers(firstNum,secondNum);
+        multiplyNumbers(firstNum,secondNum);
+        resultDisplay.innerHTML = result;
+
         
     } else if(operator === '/' && firstNum !== '' && secondNum === ''){
         secondNum = firstNum;
-        resultDisplay.innerHTML = divideNumbers(firstNum,secondNum);
+        divideNumbers(firstNum,secondNum);
+        resultDisplay.innerHTML = result;
+
     } 
     // console.log('FINAL FIRSTNUM', firstNum);
     // console.log('operator', operator);
@@ -104,8 +126,17 @@ let selectOperator = (e) => {
     console.log("Flag: " , flag)
     operator = e.target.textContent;
 
-    resultDisplay.innerHTML = firstNum + operator + secondNum; 
+    resultDisplay.innerHTML = firstNum + operator + secondNum ; 
+
+
     console.log('operator', operator);
+    addNumbers(firstNum,secondNum);
+    resultDisplay.innerHTML = result;
+    firstNum = result;
+    secondNum = '';
+    resultDisplay.innerHTML = result ;
+    console.log('am ajuns', result,firstNum,secondNum);
+
 }
 
 let displayValue = (e) => {
@@ -135,6 +166,11 @@ let displayValue = (e) => {
         } else {
             secondNum += e.target.textContent;
             resultDisplay.innerHTML = firstNum + operator + secondNum;  
+
+
+            // result = firstNum;
+            // resultDisplay.innerHTML = result + operator ; 
+
         }
     }
 }
@@ -193,3 +229,7 @@ opEqual.addEventListener('click', operate);
 //second, display the result of that calculation (19), 
 //and finally, use that result (19) as the first number in your 
 //new calculation, along with the next operator (-).
+
+// cand apas / * - + = numarul care il am/ rezultatul sa devina firstnum
+
+//9+9+9 =
