@@ -64,16 +64,18 @@ function divideNumbers(firstNum, secondNum){
 // and then calls one of the above functions on the numbers.
 
 function operate(){
-    if (operator === '+' && firstNum !== '' && secondNum !== ''){
+    if(operator === '/' && secondNum === '0' && firstNum !== ''){
+        for (const divideBy0 of errorDivide) {
+           divideBy0.disabled = true;
+        }
+        resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;
+    
+    } else if (operator === '+' && firstNum !== '' && secondNum !== ''){
         addNumbers(firstNum,secondNum);
         resultDisplay.innerHTML = result;
-        firstNum = result;
-        resultDisplay.innerHTML = result;
+        // firstNum = result;
+        // resultDisplay.innerHTML = result;
  
-     
-
-
-
     } else if(operator === '-' && firstNum !== '' && secondNum !== ''){
         subtractNumbers(firstNum,secondNum); 
         resultDisplay.innerHTML = result;
@@ -86,13 +88,14 @@ function operate(){
         divideNumbers(firstNum,secondNum).toFixed(3);
         resultDisplay.innerHTML = result;
 
-    } else if(operator === '/' && secondNum === '0' && firstNum !== ''){
-        for (const divideBy0 of errorDivide) {
-           divideBy0.disabled = true;
-        }
-        resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;     
-    
-    } else if(operator === '+' && firstNum !== '' && secondNum === ''){
+    } 
+    // else if(operator === '/' && secondNum === '0' && firstNum !== ''){
+        // for (const divideBy0 of errorDivide) {
+        //    divideBy0.disabled = true;
+        // }
+        // resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;     
+// }
+     else if(operator === '+' && firstNum !== '' && secondNum === ''){
         secondNum = firstNum;
         addNumbers(firstNum,secondNum);
         resultDisplay.innerHTML = result;
@@ -130,12 +133,41 @@ let selectOperator = (e) => {
 
 
     console.log('operator', operator);
-    addNumbers(firstNum,secondNum);
-    resultDisplay.innerHTML = result;
-    firstNum = result;
-    secondNum = '';
-    resultDisplay.innerHTML = result ;
-    console.log('am ajuns', result,firstNum,secondNum);
+    if (operator === '+' && firstNum !== '' ){
+        resultDisplay.innerHTML = addNumbers(firstNum,secondNum);
+        console.log('1');
+    }  else if(operator === '-' && firstNum !== ''){
+        console.log(flag,'flag*')
+
+        resultDisplay.innerHTML = subtractNumbers(firstNum,secondNum); }
+    // }   else if(operator === '*' && firstNum !== ''){
+    //     console.log(flag,'flag*')
+    //     console.log('1*');
+    //     // multiplyNumbers(firstNum,secondNum);;
+    //     console.log(multiplyNumbers(firstNum,secondNum), 'aici');
+    //     resultDisplay.innerHTML = multiplyNumbers(firstNum,secondNum);
+    //     console.log('2*');
+    // }   else if(operator === '/' && secondNum === '0' && firstNum !== ''){
+    //     for (const divideBy0 of errorDivide) {
+    //        divideBy0.disabled = true;
+    //     }
+    //     resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;
+    // }
+    //    else if(operator === '/' && firstNum !== '' && secondNum !== '0'){
+    //     console.log('1/');
+    //     // divideNumbers(firstNum,secondNum);
+    //     console.log(divideNumbers(firstNum,secondNum));
+    //     resultDisplay.innerHTML = divideNumbers(firstNum,secondNum);
+    //     console.log('2/');
+    // }
+
+
+    // resultDisplay.innerHTML = result;
+    // firstNum = result;
+    // secondNum = '';
+    // resultDisplay.innerHTML = result ;
+    console.log('am ajuns', result, firstNum, secondNum);
+
 
 }
 
@@ -232,4 +264,4 @@ opEqual.addEventListener('click', operate);
 
 // cand apas / * - + = numarul care il am/ rezultatul sa devina firstnum
 
-//9+9+9 =
+//9+9+9 = result + 7 = etc
