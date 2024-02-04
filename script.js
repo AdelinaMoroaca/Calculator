@@ -70,21 +70,23 @@ function operate(){
         }
         resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;
     
-    } else if (operator === '+' && firstNum !== '' && secondNum !== ''){
-        addNumbers(firstNum,secondNum);
-        resultDisplay.innerHTML = result;
-        // firstNum = result;
-        // resultDisplay.innerHTML = result;
+    } 
+    // else if (operator === '+' && firstNum !== '' && secondNum !== ''){
+    //     addNumbers(firstNum,secondNum);
+    //     resultDisplay.innerHTML = result;
+    //     // firstNum = result;
+    //     // resultDisplay.innerHTML = result;
  
-    } else if(operator === '-' && firstNum !== '' && secondNum !== ''){
-        subtractNumbers(firstNum,secondNum); 
-        resultDisplay.innerHTML = result;
+    // } else if(operator === '-' && firstNum !== '' && secondNum !== ''){
+    //     subtractNumbers(firstNum,secondNum); 
+    //     resultDisplay.innerHTML = result;
 
-    } else if(operator === '*' && firstNum !== '' && secondNum !== ''){
-        multiplyNumbers(firstNum,secondNum);  
-        resultDisplay.innerHTML = result;
+    // } else if(operator === '*' && firstNum !== '' && secondNum !== ''){
+    //     multiplyNumbers(firstNum,secondNum);  
+    //     resultDisplay.innerHTML = result;
 
-    } else if(operator === '/' && firstNum !== '' && secondNum !== '0' && secondNum !== ''){
+    // } 
+    else if(operator === '/' && firstNum !== '' && secondNum !== '0' && secondNum !== ''){
         divideNumbers(firstNum,secondNum).toFixed(3);
         resultDisplay.innerHTML = result;
 
@@ -95,74 +97,93 @@ function operate(){
         // }
         // resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;     
 // }
-     else if(operator === '+' && firstNum !== '' && secondNum === ''){
-        secondNum = firstNum;
-        addNumbers(firstNum,secondNum);
-        resultDisplay.innerHTML = result;
+    //  else if(operator === '+' && firstNum !== '' && secondNum === ''){
+    //     secondNum = firstNum;
+    //     addNumbers(firstNum,secondNum);
+    //     resultDisplay.innerHTML = result;
 
-    }  else if(operator === '-' && firstNum !== '' && secondNum === ''){
-        secondNum = firstNum;
-        subtractNumbers(firstNum,secondNum);
-        resultDisplay.innerHTML = result;
+    // }  else if(operator === '-' && firstNum !== '' && secondNum === ''){
+    //     secondNum = firstNum;
+    //     subtractNumbers(firstNum,secondNum);
+    //     resultDisplay.innerHTML = result;
 
 
-    } else if(operator === '*' && firstNum !== '' && secondNum === ''){
-        secondNum = firstNum;
-        multiplyNumbers(firstNum,secondNum);
-        resultDisplay.innerHTML = result;
+    // } else if(operator === '*' && firstNum !== '' && secondNum === ''){
+    //     secondNum = firstNum;
+    //     multiplyNumbers(firstNum,secondNum);
+    //     resultDisplay.innerHTML = result;
 
         
-    } else if(operator === '/' && firstNum !== '' && secondNum === ''){
+    // } 
+    else if(operator === '/' && firstNum !== '' && secondNum === ''){
         secondNum = firstNum;
         divideNumbers(firstNum,secondNum);
         resultDisplay.innerHTML = result;
 
     } 
+ 
+
     // console.log('FINAL FIRSTNUM', firstNum);
     // console.log('operator', operator);
     // console.log('FINAL SECONDNUM', secondNum);
     flag = true;
 }
 
+//SELECTARE BUTON + - * /
 let selectOperator = (e) => {
     flag = false;
     console.log("Flag: " , flag)
     operator = e.target.textContent;
 
-    resultDisplay.innerHTML = firstNum + operator + secondNum ; 
+    // resultDisplay.innerHTML = firstNum + operator + secondNum ; 
 
 
     console.log('operator', operator);
-    if (operator === '+' && firstNum !== '' ){
-        resultDisplay.innerHTML = addNumbers(firstNum,secondNum);
-        console.log('1');
-    }  else if(operator === '-' && firstNum !== ''){
-        console.log(flag,'flag*')
+    //ADUNARE
+    // if (operator === '+' && firstNum !== '' ){
+    //     addNumbers(firstNum,secondNum);
+    //     resultDisplay.innerHTML = result;
+    //     // resultDisplay.innerHTML = addNumbers(firstNum,secondNum);
+    //     console.log('1');
+    // }  
 
-        resultDisplay.innerHTML = subtractNumbers(firstNum,secondNum); }
-    // }   else if(operator === '*' && firstNum !== ''){
+
+    //SCADERE
+    //else if(operator === '-' && firstNum !== ''){
+    //     console.log(flag,'flag*')
+
+    //     resultDisplay.innerHTML = subtractNumbers(firstNum,secondNum); 
+    // }  
+
+
+    //INMULTIRE
+    // else if(operator === '*' && firstNum !== ''){
     //     console.log(flag,'flag*')
     //     console.log('1*');
     //     // multiplyNumbers(firstNum,secondNum);;
     //     console.log(multiplyNumbers(firstNum,secondNum), 'aici');
     //     resultDisplay.innerHTML = multiplyNumbers(firstNum,secondNum);
-    //     console.log('2*');
-    // }   else if(operator === '/' && secondNum === '0' && firstNum !== ''){
-    //     for (const divideBy0 of errorDivide) {
-    //        divideBy0.disabled = true;
-    //     }
-    //     resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;
-    // }
-    //    else if(operator === '/' && firstNum !== '' && secondNum !== '0'){
-    //     console.log('1/');
-    //     // divideNumbers(firstNum,secondNum);
-    //     console.log(divideNumbers(firstNum,secondNum));
-    //     resultDisplay.innerHTML = divideNumbers(firstNum,secondNum);
-    //     console.log('2/');
-    // }
+    //     console.log('2*');}
+    // }  else
 
 
-    // resultDisplay.innerHTML = result;
+    //IMPARTIRE
+      if(operator === '/' && secondNum === '0' && firstNum !== ''){
+        for (const divideBy0 of errorDivide) {
+           divideBy0.disabled = true;
+        }
+        resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;
+    }
+       else if(operator === '/' && firstNum !== '' && secondNum !== '0'){
+        console.log('1/');
+        // divideNumbers(firstNum,secondNum);
+        console.log(divideNumbers(firstNum,secondNum));
+        resultDisplay.innerHTML = divideNumbers(firstNum,secondNum);
+        console.log('2/');
+    }
+
+
+    resultDisplay.innerHTML = result;
     // firstNum = result;
     // secondNum = '';
     // resultDisplay.innerHTML = result ;
