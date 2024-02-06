@@ -102,19 +102,43 @@ let selectMathOperator = (e) => {
     console.log('1', operator);
     if(operator === ''){
         console.log('2', operator);
-
         operator = e.target.textContent;
+        display.innerHTML = firstNum + operator;
+        console.log('3', operator);
+
     } else {
         console.log('3', operator);
-        display.innerHTML = firstNum + operator;
+        display.innerHTML = firstNum + operator + secondNum;
         if (operator === '+' && firstNum !== '' && secondNum !== '' ){ //ADD NUMBERS
         console.log('4', operator);
-            display.innerHTML = addNumbers(firstNum,secondNum);
+            result = addNumbers(firstNum,secondNum);
+            // display.innerHTML = result;
+            display.innerHTML = firstNum + operator + secondNum;
+            resultDisplay.innerHTML = result;
+            firstNum = result;
+            operator = '';
+            secondNum = '';
 
-                    // console.log('result',result);
-                    // firstNum = result;
-                    // addNumbers(firstNum,secondNum);
-        }
+        } else if(operator === '/' && secondNum === '0' && firstNum !== ''){
+            console.log(firstNum, secondNum, result, 'displayValueERROR');
+            for (const divideBy0 of errorDivide) {
+                divideBy0.disabled = true;
+            }
+            resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;
+                    
+        } else if(operator === '/' && firstNum !== '' && secondNum !== '0' && secondNum !== ''){
+                    console.log('ok98');
+            //       result = addNumbers(firstNum,secondNum);
+            // display.innerHTML = result;
+            result = divideNumbers(firstNum,secondNum).toFixed(3);
+
+            display.innerHTML = firstNum + operator + secondNum;
+            resultDisplay.innerHTML = result;
+            firstNum = result;
+            operator = '';
+            secondNum = '';
+
+        } 
     }
     
     // console.log('operator', operator);
