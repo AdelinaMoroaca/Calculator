@@ -64,7 +64,7 @@ function divideNumbers(firstNum, secondNum){
 // and then calls one of the above functions on the numbers.
 
 function selectEqualOperator(){
-    if(operator === '/' && secondNum === '0' && firstNum !== ''){ //DIVIDE NUMBERS
+    if(operator === '/' && secondNum === '0' && firstNum !== ''){ 
         for (const divideBy0 of errorDivide) {
            divideBy0.disabled = true;
         }
@@ -81,7 +81,7 @@ function selectEqualOperator(){
         divideNumbers(firstNum,secondNum);
         resultDisplay.innerHTML = result;
  
-    } else if(operator === '+' && firstNum !== '' && secondNum === ''){ //ADD NUMBERS
+    } else if(operator === '+' && firstNum !== '' && secondNum === ''){
         secondNum = firstNum;
         addNumbers(firstNum,secondNum);
         resultDisplay.innerHTML = result;
@@ -92,7 +92,7 @@ function selectEqualOperator(){
         firstNum = result;
         secondNum = '';
 
-    } else if(operator === '*' && firstNum !== '' && secondNum === ''){//MULTIPLY NUMBERS
+    } else if(operator === '*' && firstNum !== '' && secondNum === ''){
         secondNum = firstNum;
         multiplyNumbers(firstNum,secondNum);
         resultDisplay.innerHTML = result;
@@ -103,7 +103,7 @@ function selectEqualOperator(){
         firstNum = result;
         secondNum = '';
 
-    } else if(operator === '-' && firstNum !== '' && secondNum === ''){// SUBTRACT NUMBERS
+    } else if(operator === '-' && firstNum !== '' && secondNum === ''){
         secondNum = firstNum;
         subtractNumbers(firstNum,secondNum);
         resultDisplay.innerHTML = result;
@@ -113,7 +113,6 @@ function selectEqualOperator(){
         resultDisplay.innerHTML = result;
         firstNum = result;
         secondNum = '';
-    
     }
 
     flag = true;
@@ -121,42 +120,31 @@ function selectEqualOperator(){
 
 let selectMathOperator = (e) => {
     flag = false;
-    console.log('1', operator);
     if(operator === ''){
-        console.log('2', operator);
         operator = e.target.textContent;
         display.innerHTML = firstNum + operator;
-        console.log('3', operator);
         operator = e.target.textContent;
-        console.log('3nou', operator);
-
         
     } else {
-        console.log('4', operator);
         display.innerHTML = firstNum + operator + secondNum;
-        if (operator === '+' && firstNum !== '' && secondNum !== '' ){ //ADD NUMBERS
-        console.log('5', operator);
+        if (operator === '+' && firstNum !== '' && secondNum !== '' ){
             result = addNumbers(firstNum,secondNum);
             display.innerHTML = firstNum + operator + secondNum;
             resultDisplay.innerHTML = result;
             firstNum = result;
             operator = e.target.textContent;
             secondNum = '';
-            console.log('6', operator);
             display.innerHTML = firstNum + operator + secondNum;
             operator = e.target.textContent;
 
         } else if(operator === '/' && secondNum === '0' && firstNum !== ''){
-            console.log(firstNum, secondNum, result, 'displayValueERROR');
             for (const divideBy0 of errorDivide) {
                 divideBy0.disabled = true;
             }
             resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;
-            console.log('7', operator);
             
         } else if(operator === '/' && firstNum !== '' && secondNum !== '0' && secondNum !== ''){
             result = divideNumbers(firstNum,secondNum).toFixed(3);
-
             display.innerHTML = firstNum + operator + secondNum;
             resultDisplay.innerHTML = result;
             firstNum = result;
@@ -164,12 +152,10 @@ let selectMathOperator = (e) => {
             
 
             secondNum = '';
-            console.log('8', operator);
             display.innerHTML = firstNum + operator + secondNum;
             operator = e.target.textContent;
 
         } else if(operator === '*' && firstNum !== '' && secondNum !== '' ){
-            console.log('9', operator);
             result = multiplyNumbers(firstNum,secondNum);
             display.innerHTML = firstNum + operator + secondNum;
             resultDisplay.innerHTML = result;
@@ -178,7 +164,6 @@ let selectMathOperator = (e) => {
             
 
             secondNum = '';
-            console.log('10', operator);
             display.innerHTML = firstNum + operator + secondNum;
             operator = e.target.textContent;
 
@@ -191,38 +176,30 @@ let selectMathOperator = (e) => {
 
 
             secondNum = '';
-            console.log('10', operator);
             display.innerHTML = firstNum + operator + secondNum;
             operator = e.target.textContent;
     
         } else if (operator === '-' || operator === '+' || operator === '*' || operator === '/'){
-            console.log('operatorCH');
             operator = e.target.textContent;
-            console.log('operatorCH',operator);
             display.innerHTML = firstNum + operator;
-            if (operator === '+' && firstNum !== '' && secondNum !== '' ){ //ADD NUMBERS
-                console.log('5', operator);
+            if (operator === '+' && firstNum !== '' && secondNum !== '' ){
                     result = addNumbers(firstNum,secondNum);
                     display.innerHTML = firstNum + operator + secondNum;
                     resultDisplay.innerHTML = result;
                     firstNum = result;
                     operator = e.target.textContent;
                     secondNum = '';
-                    console.log('6', operator);
                     display.innerHTML = firstNum + operator + secondNum;
                     operator = e.target.textContent;
         
                 } else if(operator === '/' && secondNum === '0' && firstNum !== ''){
-                    console.log(firstNum, secondNum, result, 'displayValueERROR');
                     for (const divideBy0 of errorDivide) {
                         divideBy0.disabled = true;
                     }
                     resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;
-                    console.log('7', operator);
                     
                 } else if(operator === '/' && firstNum !== '' && secondNum !== '0' && secondNum !== ''){
                     result = divideNumbers(firstNum,secondNum).toFixed(3);
-        
                     display.innerHTML = firstNum + operator + secondNum;
                     resultDisplay.innerHTML = result;
                     firstNum = result;
@@ -230,12 +207,10 @@ let selectMathOperator = (e) => {
                     
         
                     secondNum = '';
-                    console.log('8', operator);
                     display.innerHTML = firstNum + operator + secondNum;
                     operator = e.target.textContent;
         
                 } else if(operator === '*' && firstNum !== '' && secondNum !== '' ){
-                    console.log('9', operator);
                     result = multiplyNumbers(firstNum,secondNum);
                     display.innerHTML = firstNum + operator + secondNum;
                     resultDisplay.innerHTML = result;
@@ -244,7 +219,6 @@ let selectMathOperator = (e) => {
                     
         
                     secondNum = '';
-                    console.log('10', operator);
                     display.innerHTML = firstNum + operator + secondNum;
                     operator = e.target.textContent;
         
@@ -257,7 +231,6 @@ let selectMathOperator = (e) => {
         
         
                     secondNum = '';
-                    console.log('10', operator);
                     display.innerHTML = firstNum + operator + secondNum;
                     operator = e.target.textContent;
                 }
@@ -268,17 +241,14 @@ let selectMathOperator = (e) => {
 let displayValue = (e) => {
     if(flag){
         if(firstNum === '0'){
-            console.log(firstNum, secondNum, result,'displayValue1');
             firstNum = e.target.textContent;
             display.innerHTML = firstNum; 
             resultDisplay.innerHTML = firstNum; 
 
         } else {
-            console.log(firstNum, secondNum, result, 'displayValue2');
             firstNum += e.target.textContent;
             display.innerHTML = firstNum + operator;
             resultDisplay.innerHTML = firstNum; 
-
         }
 
     } else {
@@ -301,10 +271,14 @@ function clearData(){
 
 function deleteNum(){
     firstNum = firstNum.slice(0, -1);
+
     if(firstNum.length < 1){
         firstNum = '0';
         resultDisplay.innerHTML = firstNum;
+    } else {
+        result = firstNum;
     }
+
     display.innerHTML = firstNum;
     resultDisplay.innerHTML = firstNum;
 }
