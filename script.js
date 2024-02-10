@@ -5,6 +5,8 @@ let resultDisplay = document.getElementById('resultDisplay');
 let display = document.getElementById('display');
 let clearBtn = document.getElementById('clear');
 let deleteBtn = document.getElementById('delete');
+let pointBtn = document.getElementById('btnPoint');
+
 const errorDivide = document.getElementsByClassName('divideBy0');
 
 let opDivide = document.getElementById('operatorDivide');
@@ -29,6 +31,8 @@ let num0 = document.getElementById('btn0');
 //CREATE VARIABLES FOR EACH OF THE PARTS OF A CALCULATOR OPERATION
 let firstNum = '0';
 let secondNum = '';
+let point = '';
+let decimals = '';
 let operator = '';
 let result = '';
 let flag = true;
@@ -68,10 +72,10 @@ function selectEqualOperator(){
         for (const divideBy0 of errorDivide) {
            divideBy0.disabled = true;
         }
-        resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;
+        resultDisplay.innerHTML = `ERROR for divide by 0!Use CLEAR button!`;
     
     } else if(operator === '/' && firstNum !== '' && secondNum !== '0' && secondNum !== ''){
-        result = divideNumbers(firstNum,secondNum).toFixed(3);
+        result = divideNumbers(firstNum,secondNum).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1');
         resultDisplay.innerHTML = result;
         firstNum = result;
         secondNum = '';
@@ -141,12 +145,12 @@ let selectMathOperator = (e) => {
             for (const divideBy0 of errorDivide) {
                 divideBy0.disabled = true;
             }
-            resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;
+            resultDisplay.innerHTML = `ERROR for divide by 0!Use CLEAR button!`;
             
         } else if(operator === '/' && firstNum !== '' && secondNum !== '0' && secondNum !== ''){
-            result = divideNumbers(firstNum,secondNum).toFixed(3);
+            result = divideNumbers(firstNum,secondNum);
             display.innerHTML = firstNum + operator + secondNum;
-            resultDisplay.innerHTML = result;
+            resultDisplay.innerHTML = result.toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1');
             firstNum = result;
             operator = e.target.textContent;
             
@@ -196,12 +200,12 @@ let selectMathOperator = (e) => {
                     for (const divideBy0 of errorDivide) {
                         divideBy0.disabled = true;
                     }
-                    resultDisplay.innerHTML = `Error! You can't divide by 0! Restart by pressing CLEAR button !`;
+                    resultDisplay.innerHTML = `ERROR for divide by 0!Use CLEAR button!`;
                     
                 } else if(operator === '/' && firstNum !== '' && secondNum !== '0' && secondNum !== ''){
-                    result = divideNumbers(firstNum,secondNum).toFixed(3);
+                    result = divideNumbers(firstNum,secondNum);
                     display.innerHTML = firstNum + operator + secondNum;
-                    resultDisplay.innerHTML = result;
+                    resultDisplay.innerHTML = result.toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1');
                     firstNum = result;
                     operator = e.target.textContent;
                     
@@ -257,6 +261,24 @@ let displayValue = (e) => {
     }
 }
 
+function pointNum(){
+    if(firstNum && secondNum === '' && point === ''){
+        point = '.';
+        decimals = '';
+        firstNum = firstNum + point + decimals; 
+        point = '';
+        display.innerHTML = firstNum + operator; 
+    
+    } else if (firstNum && secondNum && point === '') {
+        point = '.';
+        decimals = '';
+        secondNum = secondNum + point + decimals; 
+        display.innerHTML = firstNum + operator + secondNum; 
+
+    }
+}
+   
+
 function clearData(){
     firstNum = '0';
     secondNum = '';
@@ -297,6 +319,7 @@ num0.addEventListener('click', displayValue);
 
 clearBtn.addEventListener('click', clearData);
 deleteBtn.addEventListener('click', deleteNum);
+pointBtn.addEventListener('click', pointNum);
 
 
 opAdd.addEventListener('click', selectMathOperator);
