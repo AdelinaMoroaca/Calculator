@@ -20,6 +20,7 @@ body {
     align-items: center;
     flex-direction: column;
     background: var(--peachy);
+    background-color: blue;
 }
 
 #container {
